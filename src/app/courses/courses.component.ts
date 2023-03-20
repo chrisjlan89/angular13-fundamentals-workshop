@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../common/models/course';
+import { CoursesService } from '../common/services/courses.service';
 
 const emptyCourse: Course = {
   id: null,
@@ -7,56 +8,66 @@ const emptyCourse: Course = {
   description: '',
   percentComplete: 0,
   favorite: false,
-}
+};
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.scss']
+  styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
   // 1. Render courses in a list
   // 2. Select a course
   // 3. Render selected course
-
-  courses = [
-    {
-      id: 1,
-      title: 'Angular 13 Fundamentals',
-      description: 'Learn the fundamentals of Angular 13',
-      percentComplete: 12,
-      favorite: true
-    },
-    {
-      id: 2,
-      title: 'JavaScript The HARDEST PARTS EVER!',
-      description: 'Learn the JavaScript like a pro! with Will',
-      percentComplete: 98,
-      favorite: true
-    }
-  ];
+ 
+  courses$: any = [];
   selectedCourse = emptyCourse;
   originalTitle = '';
 
-  constructor() { }
+  constructor(private coursesService: CoursesService) {}
 
   ngOnInit(): void {
+    this.fetchCourses();
   }
 
-  selectCourse(course) {
-    this.selectedCourse = {...course};
+  public fetchCourses() {
+    this.courses$ = this.coursesService.all();
+  }
+
+  selectCourse(course: Course) {
+    this.selectedCourse = { ...course };
     this.originalTitle = course.title;
   }
 
-  saveCourse(course) {
-    console.log('SAVE COURSE', course);
+  saveCourse(course: Course) {
+    console.log({ course }, 'called');
+    if (course.id) {
+      console.log('updating');
+      this.updateCourse(course);
+    } else {
+      this.createCourse(course);
+    }
   }
 
-  deleteCourse(courseId) {
-    console.log('DELETE COURSE', courseId);
+  updateCourse(course: Course) {
+    this.coursesService.update(course).subscribe(() => {
+      this.fetchCourses();
+    });
+  }
+
+  createCourse(course: Course) {
+    this.coursesService.create(course).subscribe(() => {
+      this.fetchCourses();
+    });
+  }
+
+  deleteCourse(courseId: string) {
+    this.coursesService.delete(courseId).subscribe(() => {
+      this.fetchCourses();
+    });
   }
 
   reset() {
-    this.selectCourse({...emptyCourse});
+    this.selectCourse({ ...emptyCourse });
   }
 }
