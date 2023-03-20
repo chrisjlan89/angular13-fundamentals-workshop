@@ -33,7 +33,18 @@ const routes: Routes = [
       },
       { path: 'params', component: RouteParamsComponent },
       { path: 'params/:id', component: RouteParamsComponent },
-      {path: 'protected', component: ProtectedComponent, canActivate: [AuthGuard]}
+      {
+        path: 'protected',
+        component: ProtectedComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lazy',
+        loadChildren: () =>
+          import('./examples/lazy-module/lazy-module.module').then(
+            ({ LazyModule }) => LazyModule
+          ),
+      },
     ],
   },
 
