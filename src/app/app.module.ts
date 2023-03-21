@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CoursesComponent } from './courses/courses.component';
-// import { DynamicComponent } from './examples/dynamic-component/dynamic-component.component';
+
 import { ExamplesComponent } from './examples/examples.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -21,15 +21,15 @@ import { AdminVacationComponent } from './examples/child-routes/admin-vacation/a
 import { RouteParamsComponent } from './examples/route-params/route-params.component';
 import { ProtectedComponent } from './examples/protected/protected.component';
 import { AuthService } from './shared/services/auth/auth.service';
+import { DynamicComponent } from './examples/dynamic/dynamic.component';
+import { CircleComponent } from './examples/dynamic/circle/circle.component';
+import { SquareComponent } from './examples/dynamic/square/square.component';
+import { TriangleComponent } from './examples/dynamic/triangle/triangle.component';
 
-// import { AuthService } from './shared/services/auth/auth.service';
 // import { NotificationService } from './shared/services/notifications/notification.service';
-// import { CircleComponent } from './examples/dynamic-component/circle/circle.component';
-// import { SquareComponent } from './examples/dynamic-component/square/square.component';
-// import { TriangleComponent } from './examples/dynamic-component/triangle/triangle.component';
+
 // import { CustomInputComponent } from './examples/custom-input/custom-input.component';
 // import { CustomControlComponent } from './examples/custom-input/custom-control/custom-control.component';
-// import { RouteParamsComponent } from './examples/route-params/route-params.component';
 
 @NgModule({
   imports: [
@@ -52,14 +52,15 @@ import { AuthService } from './shared/services/auth/auth.service';
     AdminPayrollComponent,
     AdminVacationComponent,
     RouteParamsComponent,
-    // DynamicComponent,
-    // CircleComponent,
-    // SquareComponent,
-    // TriangleComponent,
+
     // CustomInputComponent,
     // CustomControlComponent,
-    // RouteParamsComponent,
+
     ProtectedComponent,
+     DynamicComponent,
+     CircleComponent,
+     SquareComponent,
+     TriangleComponent,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

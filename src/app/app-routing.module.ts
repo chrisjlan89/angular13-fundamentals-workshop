@@ -5,6 +5,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { AdminPayrollComponent } from './examples/child-routes/admin-payroll/admin-payroll.component';
 import { AdminVacationComponent } from './examples/child-routes/admin-vacation/admin-vacation.component';
 import { AdminComponent } from './examples/child-routes/admin.component';
+import { DynamicComponent } from './examples/dynamic/dynamic.component';
 import { ExamplesComponent } from './examples/examples.component';
 import { ProtectedComponent } from './examples/protected/protected.component';
 import { RouteParamsComponent } from './examples/route-params/route-params.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
             ({ LazyModule }) => LazyModule
           ),
       },
+      { path: 'create', component: DynamicComponent },
     ],
   },
 
